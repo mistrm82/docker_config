@@ -24,4 +24,12 @@ docker build --tag bulkrnaseq_r4.2.2 Docker-rnaseq/ # last argument is a directo
 docker run -d -p 8787:8787 -e PASSWORD=mypassword bulkrnaseq_r4.2.2
 ```
 
+**To mount a local folder to access in RStudio:**
+
+```
+# add an argument
+
+-v /path/to/local/folder:/home/rstudio
+```
+
 Navigate to browser: http://localhost:8787/
