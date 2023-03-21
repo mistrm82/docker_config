@@ -15,7 +15,7 @@
 **To build image:**
 
 ```
-docker build --tag bulkrnaseq_R_4.2.2 Dockerfile
+docker build --tag bulkrnaseq_r4.2.2 Docker-rnaseq/ # last argument is a directory that contains the Dockerfile
 ```
 
 **To use image:**
