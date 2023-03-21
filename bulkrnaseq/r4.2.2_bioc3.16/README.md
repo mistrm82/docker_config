@@ -21,5 +21,7 @@ docker build --tag bulkrnaseq_r4.2.2 Docker-rnaseq/ # last argument is a directo
 **To use image:**
 
 ```
-docker run -d -p 8787:8787 -e PASSWORD=mypassword bulkrnaseq_R_4.2.2
+docker run -d -p 8787:8787 -e PASSWORD=mypassword bulkrnaseq_r4.2.2
 ```
+
+Navigate to browser: http://localhost:8787/
