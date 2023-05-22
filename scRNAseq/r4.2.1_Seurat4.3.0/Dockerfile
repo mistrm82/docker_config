@@ -1,4 +1,4 @@
-FROM rocker/rstudio:4.2.2
+FROM rocker/rstudio:4.2.1
 
 MAINTAINER Meeta Mistry <meeta.mistry@gmail.com>
 
