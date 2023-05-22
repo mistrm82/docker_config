@@ -2,23 +2,27 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 suppressWarnings(BiocManager::install())
 
+install.packages(c("Seurat", "scCustomize")) # Separate because had unknown issues
 
-pkgs_to_install <- c("remotes","tidyverse","tibble","RCurl", "Seurat", "patchwork", "knitr", "gridExtra", "DT", "scCustomize", "viridisLite",
+pkgs_to_install <- c("remotes","tidyverse","tibble","RCurl", "patchwork", "knitr", "gridExtra", "DT", "viridisLite",
 "cowplot","SingleCellExperiment","scater","reticulate", "AnnotationHub",
 "ensembldb", "rio","devtools","XLConnect","janitor",
-"pheatmap","DESeq2","reshape", "limma", "glmGamPoi"
-)
+"pheatmap","DESeq2","reshape", "limma", "glmGamPoi")
 
 ## Start the actual installation:
 
-# Install packages not yet installed
-installed_packages <- packages %in% rownames(installed.packages())
-if (any(installed_packages == FALSE)) {  install.packages(packages[!installed_packages]) }
+# Start wih CRAN
+installed_packages <- pkgs_to_install %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {  install.packages(pkgs_to_install[!installed_packages]) }
 
-ok <- BiocManager::install(pkgs_to_install, update=FALSE, ask=FALSE) %in% rownames(installed.packages())
-if (!all(ok))
-    stop("Failed to install:\n  ",
-         paste(pkgs_to_install[!ok], collapse="  \n  "))
+# Install packages not yet installed with BioC
+bioc <- sapply(pkgs_to_install, function(x){requireNamespace(x, quietly = TRUE)})
+bioc
+
+for(p in names(bioc[which(!bioc)])){
+  BiocManager::install(p, quiet = TRUE)
+}
+
+]
 
 suppressWarnings(BiocManager::install(update=TRUE, ask=FALSE))
-
